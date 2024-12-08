@@ -13,19 +13,18 @@ class AdamW(Optimizer):
     Args:
         parameters (List[Tensor]): Parameters to optimize
         lr (float): Learning rate
-        weight_decay (float): Weight decay coefficient
-        beta1 (float): Exponential decay rate for first moment estimates
-        beta2 (float): Exponential decay rate for second moment estimates
-        eps (float): Term added to denominator to improve numerical stability
-        device (str): Device to use for computations ("gpu" or "cpu")
+        weight_decay (float): Weight decay coefficient (default: 0.01)
+        beta1 (float): Exponential decay rate for first moment estimates (default: 0.9)
+        beta2 (float): Exponential decay rate for second moment estimates (default: 0.999)
+        eps (float): Term added to denominator to improve numerical stability (default: 1e-8)
     """
     def __init__(
-            self, parameters: List[Tensor],
+            self, parameters: List[Tensor], 
             lr: float, weight_decay: float = 0.01,
             beta1: float = 0.9, beta2: float = 0.999,
-            eps: float = 1e-8, device: str = "gpu"
+            eps: float = 1e-8
         ) -> None:
-        super().__init__(parameters, lr, device)
+        super().__init__(parameters, lr)
 
         self.weight_decay = weight_decay
         self.beta1 = beta1
